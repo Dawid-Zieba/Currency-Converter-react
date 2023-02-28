@@ -2,6 +2,7 @@ import "./style.css";
 import { currencies } from "../currencies";
 import { useState } from "react";
 import Result from "../Result";
+import { Clock } from "../Clock";
 
 
 const Form = () => {
@@ -11,11 +12,12 @@ const Form = () => {
     const rate = currencies.find(({ short }) => short === currency).rate;
 
     return (
-        
+
         <form className="form">
+            <Clock />
             <fieldset className="form__fieldset">
                 <legend className="form__legend">Wymiana waluty</legend>
-                
+
                 <p>
                     <label className="form__label">
                         <span className="form__labelText">Kwota w PLN</span>
@@ -26,7 +28,7 @@ const Form = () => {
                             required min="0"
                             placeholder="Wpisz kwotę"
                             value={amount}
-                            onChange={({target }) => setAmount(target.value)}
+                            onChange={({ target }) => setAmount(target.value)}
                         />
                     </label>
                 </p>
@@ -45,16 +47,16 @@ const Form = () => {
                                 >
                                     {currency.name}
                                 </option>
-                            ))} 
+                            ))}
                         </select>
                     </label>
                 </p>
-                
-                <Result 
-                amount={amount}
-                currency={currency}
-                rate={rate}
-                />              
+
+                <Result
+                    amount={amount}
+                    currency={currency}
+                    rate={rate}
+                />
             </fieldset>
         </form>
     );
